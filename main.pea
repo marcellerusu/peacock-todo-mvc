@@ -1,0 +1,47 @@
+import { TodoItem } from "./todo_item"
+import { Input } from "./input"
+
+class Main < Element =
+  title = "Peacock - Todo MVC"
+  style _ _ _ = "
+    background: #f5f5f5;
+    color: #4d4d4d;
+    font: 14px 'Helvetica Neue';
+    display: grid;
+    height: 100%;
+    h1 {
+      font-size: 100px;
+      font-weight: lighter;
+      color: rgba(175, 47, 47, 0.15);
+    }
+    * {
+      font-size: 24px;
+    }
+    section {
+      width: 50%;
+      justify-self: center;
+      min-width: 230px;
+      max-width: 550px;
+      header {
+        text-align: center;
+        h1 {
+          margin: 0;
+        }
+      }
+      .items-container {
+        width: 100%;
+      }
+    }
+  "
+  view _ _ _ =
+    <div>
+      <section>
+        <header>
+          <h1>todos</h1>
+        </header>
+        <Input />
+        <section class_name="items-container">
+          <TodoItem name="test" />
+        </section>
+      </section>
+    </div>
