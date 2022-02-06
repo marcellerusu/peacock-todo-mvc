@@ -1,8 +1,10 @@
 import { TodoItem } from "./todo_item"
 import { Input } from "./input"
+import { todos } from "./state"
 
 class Main < Element =
   title = "Peacock - Todo MVC"
+  context = todos
   style _ _ _ = "
     background: #f5f5f5;
     color: #4d4d4d;
@@ -17,7 +19,7 @@ class Main < Element =
     * {
       font-size: 24px;
     }
-    section {
+    .app-container {
       width: 50%;
       justify-self: center;
       min-width: 230px;
@@ -28,20 +30,18 @@ class Main < Element =
           margin: 0;
         }
       }
-      .items-container {
-        width: 100%;
-      }
     }
   "
-  view _ _ _ =
+  view _ _ todos =
+    console.log(todos.to_js)
     <div>
-      <section>
+      <section class_name="app-container">
         <header>
           <h1>todos</h1>
         </header>
         <Input />
         <section class_name="items-container">
-          <TodoItem name="test" />
+          {todos.map #{ <TodoItem name={%} /> }}
         </section>
       </section>
     </div>

@@ -1,4 +1,8 @@
+import { todos } from "./state"
+
 export class Input < Element =
+  init_state = ""
+  context = todos
   style _ _ _ = "
     display: flex;
     input {
@@ -16,8 +20,13 @@ export class Input < Element =
       }
     }
   "
-  view _ _ _ =
+  view _ item todos =
+    console.log todos.push("to").to_js, item
     <span>
-      <input placeholder="What needs to be done?" />
-      <button>Submit</button>
+      <input
+        value={item}
+        onchange=#{set_state js_lookup(%, "target", "value")}
+        placeholder="What needs to be done?"
+      />
+      <button onclick=#{set_context todos.push(item)}>Submit</button>
     </span>
