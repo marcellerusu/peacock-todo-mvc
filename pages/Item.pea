@@ -1,0 +1,34 @@
+import { items } from "store/items"
+
+schema Props = { completed, id, description }
+
+schema Completed = Props & { completed: true }
+
+def style(Completed) = "
+  text-decoration: strike-through;
+"
+
+def style = ""
+
+def markCompleted!(id)
+  $items := $items.update_at { id }, #{ ...%, completed: !%.completed }
+
+  $items := $items.map do |todo|
+    if todo.id == id
+      { ...todo, completed: !todo.completed}
+    else
+      todo
+    end
+  end
+end
+
+def delete!(id)
+  $items := $items.filter #{ %.id != id }
+end
+
+def view({ description, id }) =
+  <li>
+    <input type="checkbox" @change=#{markCompleted! id}
+    {description}
+    <button @click=#{delete! id}>X</button>
+  </li>

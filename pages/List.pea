@@ -1,0 +1,8 @@
+import Item from "./Item"
+
+def view({ items }) =
+  <ul>
+    {items.map do |item|
+      <Item {...item} />
+    end}
+  </ul>

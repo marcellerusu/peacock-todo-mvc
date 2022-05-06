@@ -1,0 +1,15 @@
+import { declare! } from "peacock"
+import { items } from "store/items"
+
+import List from "./List"
+
+def view =
+  <div>
+    <header><h1>todos</h1></header>
+    <slot fallback={<List items={$items} />} />
+    <footer>
+      <Link to="">All</Link>
+      <Link to="active">Active</Link>
+      <Link to="completed">Completed</Link>
+    </footer>
+  </div>

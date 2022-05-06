@@ -1,0 +1,21 @@
+import { declare! } from "peacock"
+import { items } from "store/items"
+
+description := declare! ""
+
+def create!
+  $items := [
+    ...$items,
+    { 
+      $description,
+      id: crypto.generateUUID(),
+      completed: false
+    },
+  ]
+end
+
+def view =
+  <div>
+    <input type="text" $bind={description} />
+    <button @click={create!}>submit</button>
+  </div>

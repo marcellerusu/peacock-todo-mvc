@@ -1,0 +1,6 @@
+import { Link } from "peacock"
+import { items } from "store/items"
+import List from "../List"
+
+def list =
+  <List items={$items.filter #{%.completed}} />
